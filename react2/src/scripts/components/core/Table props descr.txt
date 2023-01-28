@@ -1,0 +1,30 @@
+props['data-table-id']
+
+props['data-table-controller']
+props.conditionObj
+props.canParallize
+props.lockData									- if true, component will not be updated => no server request
+props.skipAutoLoad								- if false, will skip data uploading on mount
+props.editModeEnabled							- if true, on double-click all editable cells will turn into edit mode and edit buttons will be showed instead normal (see editButtonsConfig)
+
+props.onRowDoubleClick(keyFieldValue, tableId)
+props.onPageSwitch(tableId)
+props.goTop										- if true, will scroll page to top of Table
+props.infoZone									- function/string/component (not tested) to be showed on the right of Paginator
+
+props.contextMenu
+tabulatorConfig
+buttonConfig									- in-row buttons
+editButtonsConfig								- in-row buttons (edit mode)
+rowStyleMod										- function(tableId, keyFieldValue) {return style object}||style object e.g. {color:'red'}
+
+hidePaginatorIfSinglePage
+
+props.style['maxHeight']
+props.style.width
+
+props.hasPaginatorOnTop
+
+props['itemsPerPage']
+
+props.commandCells=[{fieldName, commandType=<'link'>, onClick=<function>}]

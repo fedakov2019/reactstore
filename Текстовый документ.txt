@@ -1,0 +1,4 @@
+1.npx create-react-app my-app
+2. npm install --save cross-env
+3.npm install --start bootstrap
+K8TCY-WY3TW-H2BCG-WTYV2-C96HM

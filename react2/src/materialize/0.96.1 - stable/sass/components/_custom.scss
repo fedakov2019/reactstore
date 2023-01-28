@@ -1,0 +1,158 @@
+﻿@charset "UTF-8";
+
+/***** React component's customs *********************************************************************/
+
+//Table
+.table-header {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    height: 35px;
+    margin: 0;
+    //border:0;
+    border: solid $table-border-color;
+    border-collapse: collapse;
+    background-color: $primary-color-light;
+    border-width: 1px 1px 1px 1px;
+
+    & > div {
+        padding: 4px;
+        @include flexbox();
+        height: 100%;
+        flex-direction: row;
+        border: solid $table-border-color;
+        border-collapse: collapse;
+
+        & > div:nth-child(1) {
+            @include flex(0 1 auto);
+            overflow: hidden;
+            padding: 0px;
+        }
+
+        & > div:nth-child(2) {
+            @include flex(1 1 auto);
+            overflow: hidden;
+        }
+
+        & > div:nth-child(3) {
+            @include flex(0 1 auto);
+            overflow: hidden;
+        }
+
+        & > div:nth-child(4) {
+            @include flex(0 0 3px);
+            cursor: w-resize;
+        }
+
+        &:not(:last-child) {
+            border-width: 0px 1px 0px 0px;
+        }
+
+        &:last-child {
+            border-width: 0px 0px 0px 0px;
+        }
+    }
+}
+
+.table-body {
+    display: inline-block;
+    border-collapse: collapse;
+    margin: 0;
+    border: 0;
+    box-shadow: none;
+
+    &.hoverable {
+
+        & > li {
+            @include transition(background-color .25s ease);
+
+            & > div:first-child:hover {
+                background-color: $table-striped-color;
+            }
+        }
+    }
+
+    & > li {
+        //all table body
+        &.selected {
+            @include transition(background-color .25s ease);
+            background-color: $table-selected-color;
+            font-weight: 500;
+        }
+
+        & > div {
+            // row
+            align-items: stretch;
+            padding: 0;
+            border: none;
+        }
+
+        & > div:first-child {
+            //first row
+            @include flexbox();
+            flex-direction: row;
+
+            & > div {
+                //cells
+                border: solid $table-border-color;
+                overflow: hidden;
+                padding: 4px;
+
+                &:not(:last-child) {
+                    border-width: 0px 0px 1px 1px;
+                }
+
+                &:last-child {
+                    border-width: 0px 1px 1px 1px;
+                }
+            }
+        }
+
+        & > div:not(:first-child) {
+            //all other "rows", except first
+            @include box-shadow-2(0 0 0, inset 0px 0px 10px rgba(0, 0, 0, 0.2));
+            border: solid $table-border-color;
+            background-color:#fef6e9;
+            border-width: 0px 1px 1px 1px;
+        }
+    }
+}
+
+
+//input stream
+.input-stream {
+    & > div {
+        & > div:first-child {
+            padding: 6px;
+
+            & > div, a {
+                margin: 0px 6px 0px 0px;
+
+                & > div, input {
+                    margin: 0px 6px 0px 0px;
+                }
+            }
+        }
+    }
+}
+
+/***** React component's customs  END ****************************************************************/
+
+.shadow {
+    background-color: #dddddd;
+    opacity: 0.8;
+}
+
+.mouseover-text-highlite {
+    padding: 2px;
+    transition: ease-in-out;
+
+    &:hover {
+        color: $primary-color;
+    }
+}
+
+.bolded-text {
+    //color: color("blue-grey", "darken-4");
+    font-weight: 500;
+}

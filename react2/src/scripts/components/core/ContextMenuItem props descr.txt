@@ -1,0 +1,6 @@
+﻿for Context menu host component should add 'owner-id' property if want identify itself
+mount-point - where menu should appear
+
+inRole - list of roles
+onClick(event, props) - React's event and item's properties
+isVisible - false (as constant or function) to hide

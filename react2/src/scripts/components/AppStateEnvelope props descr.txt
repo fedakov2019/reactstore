@@ -1,0 +1,3 @@
+﻿command - for determine, wich component will be rendered
+src - 'history' if client moves by history, ignored otherwise. initials transferred always.
+initials - initial params (from history of 'pages'), if were installed by component

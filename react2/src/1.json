@@ -1,0 +1,73 @@
+﻿{
+  "ClassName": "System.AggregateException",
+  "Message": "Произошла одна или несколько ошибок.",
+  "Data": null,
+  "InnerException": {
+    "ClassName": "System.Data.Entity.Infrastructure.DbUpdateException",
+    "Message": "Unable to determine the principal end of the 'MtrDbModel.SankCaseEx_CaseL1Ex' relationship. Multiple added entities may have the same primary key.",
+    "Data": null,
+    "InnerException": {
+      "ClassName": "System.Data.Entity.Core.UpdateException",
+      "Message": "Unable to determine the principal end of the 'MtrDbModel.SankCaseEx_CaseL1Ex' relationship. Multiple added entities may have the same primary key.",
+      "Data": null,
+      "InnerException": null,
+      "HelpURL": null,
+      "StackTraceString": "   в System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.RegisterEntityReferentialConstraints(IEntityStateEntry stateEntry, Boolean currentValues)\r\n   в System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.RegisterReferentialConstraints(IEntityStateEntry stateEntry)\r\n   в System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.PullModifiedEntriesFromStateManager()\r\n   в System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.ProduceCommands()\r\n   в System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.<UpdateAsync>d__0.MoveNext()\r\n--- End of stack trace from previous location where exception was thrown ---\r\n   в System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)\r\n   в System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)\r\n   в System.Data.Entity.Core.Objects.ObjectContext.<ExecuteInTransactionAsync>d__3d`1.MoveNext()\r\n--- End of stack trace from previous location where exception was thrown ---\r\n   в System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)\r\n   в System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)\r\n   в System.Data.Entity.Core.Objects.ObjectContext.<SaveChangesToStoreAsync>d__39.MoveNext()\r\n--- End of stack trace from previous location where exception was thrown ---\r\n   в System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)\r\n   в System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)\r\n   в System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.<ExecuteAsyncImplementation>d__9`1.MoveNext()\r\n--- End of stack trace from previous location where exception was thrown ---\r\n   в System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)\r\n   в System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)\r\n   в System.Data.Entity.Core.Objects.ObjectContext.<SaveChangesInternalAsync>d__31.MoveNext()",
+      "RemoteStackTraceString": null,
+      "RemoteStackIndex": 0,
+      "ExceptionMethod": "8\nRegisterEntityReferentialConstraints\nEntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\nSystem.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator\nVoid RegisterEntityReferentialConstraints(System.Data.Entity.Core.IEntityStateEntry, Boolean)",
+      "HResult": -2146233087,
+      "Source": "EntityFramework",
+      "WatsonBuckets": null
+    },
+    "HelpURL": null,
+    "StackTraceString": "   в System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)\r\n   в System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)\r\n   в System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()\r\n   в MtrData.MtrContext.<UploadRegistry>d__203.MoveNext() в E:\\Mtr\\MtrData\\MtrContextParts\\MtrContext.InFileOps.cs:строка 2131\r\n--- End of stack trace from previous location where exception was thrown ---\r\n   в System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)\r\n   в System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)\r\n   в System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()\r\n   в MtrData.MtrContext.<InUploadOuterRegistry>d__199.MoveNext() в E:\\Mtr\\MtrData\\MtrContextParts\\MtrContext.InFileOps.cs:строка 239",
+    "RemoteStackTraceString": null,
+    "RemoteStackIndex": 0,
+    "ExceptionMethod": "8\nThrowForNonSuccess\nmscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\nSystem.Runtime.CompilerServices.TaskAwaiter\nVoid ThrowForNonSuccess(System.Threading.Tasks.Task)",
+    "HResult": -2146233087,
+    "Source": "mscorlib",
+    "WatsonBuckets": null,
+    "SafeSerializationManager": { "m_serializedStates": [ { "InvolvesIndependentAssociations": false } ] },
+    "CLR_SafeSerializationManager_RealType": "System.Data.Entity.Infrastructure.DbUpdateException, EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+  },
+  "HelpURL": null,
+  "StackTraceString": "   в System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)\r\n   в System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)\r\n   в System.Threading.Tasks.Task`1.get_Result()\r\n   в MtrService.MtrSvc.TimerInStreamCallback(Object stateInfo) в E:\\Mtr\\MtrService\\MtrSvc.cs:строка 261",
+  "RemoteStackTraceString": null,
+  "RemoteStackIndex": 0,
+  "ExceptionMethod": "8\nThrowIfExceptional\nmscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\nSystem.Threading.Tasks.Task\nVoid ThrowIfExceptional(Boolean)",
+  "HResult": -2146233088,
+  "Source": "mscorlib",
+  "WatsonBuckets": null,
+  "InnerExceptions": [
+    {
+      "ClassName": "System.Data.Entity.Infrastructure.DbUpdateException",
+      "Message": "Unable to determine the principal end of the 'MtrDbModel.SankCaseEx_CaseL1Ex' relationship. Multiple added entities may have the same primary key.",
+      "Data": null,
+      "InnerException": {
+        "ClassName": "System.Data.Entity.Core.UpdateException",
+        "Message": "Unable to determine the principal end of the 'MtrDbModel.SankCaseEx_CaseL1Ex' relationship. Multiple added entities may have the same primary key.",
+        "Data": null,
+        "InnerException": null,
+        "HelpURL": null,
+        "StackTraceString": "   в System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.RegisterEntityReferentialConstraints(IEntityStateEntry stateEntry, Boolean currentValues)\r\n   в System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.RegisterReferentialConstraints(IEntityStateEntry stateEntry)\r\n   в System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.PullModifiedEntriesFromStateManager()\r\n   в System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.ProduceCommands()\r\n   в System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.<UpdateAsync>d__0.MoveNext()\r\n--- End of stack trace from previous location where exception was thrown ---\r\n   в System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)\r\n   в System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)\r\n   в System.Data.Entity.Core.Objects.ObjectContext.<ExecuteInTransactionAsync>d__3d`1.MoveNext()\r\n--- End of stack trace from previous location where exception was thrown ---\r\n   в System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)\r\n   в System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)\r\n   в System.Data.Entity.Core.Objects.ObjectContext.<SaveChangesToStoreAsync>d__39.MoveNext()\r\n--- End of stack trace from previous location where exception was thrown ---\r\n   в System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)\r\n   в System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)\r\n   в System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.<ExecuteAsyncImplementation>d__9`1.MoveNext()\r\n--- End of stack trace from previous location where exception was thrown ---\r\n   в System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)\r\n   в System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)\r\n   в System.Data.Entity.Core.Objects.ObjectContext.<SaveChangesInternalAsync>d__31.MoveNext()",
+        "RemoteStackTraceString": null,
+        "RemoteStackIndex": 0,
+        "ExceptionMethod": "8\nRegisterEntityReferentialConstraints\nEntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\nSystem.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator\nVoid RegisterEntityReferentialConstraints(System.Data.Entity.Core.IEntityStateEntry, Boolean)",
+        "HResult": -2146233087,
+        "Source": "EntityFramework",
+        "WatsonBuckets": null
+      },
+      "HelpURL": null,
+      "StackTraceString": "   в System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)\r\n   в System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)\r\n   в System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()\r\n   в MtrData.MtrContext.<UploadRegistry>d__203.MoveNext() в E:\\Mtr\\MtrData\\MtrContextParts\\MtrContext.InFileOps.cs:строка 2131\r\n--- End of stack trace from previous location where exception was thrown ---\r\n   в System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)\r\n   в System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)\r\n   в System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()\r\n   в MtrData.MtrContext.<InUploadOuterRegistry>d__199.MoveNext() в E:\\Mtr\\MtrData\\MtrContextParts\\MtrContext.InFileOps.cs:строка 239",
+      "RemoteStackTraceString": null,
+      "RemoteStackIndex": 0,
+      "ExceptionMethod": "8\nThrowForNonSuccess\nmscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\nSystem.Runtime.CompilerServices.TaskAwaiter\nVoid ThrowForNonSuccess(System.Threading.Tasks.Task)",
+      "HResult": -2146233087,
+      "Source": "mscorlib",
+      "WatsonBuckets": null,
+      "SafeSerializationManager": { "m_serializedStates": [ { "InvolvesIndependentAssociations": false } ] },
+      "CLR_SafeSerializationManager_RealType": "System.Data.Entity.Infrastructure.DbUpdateException, EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+    }
+  ]
+}

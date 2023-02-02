@@ -1,4 +1,4 @@
-﻿namespace reactAutorizTokin.data
+﻿namespace reactAutorizTokin.Models
 {
     public class user1
     {

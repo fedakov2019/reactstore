@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Runtime.Intrinsics.X86;
 using System.Xml.Linq;
-using reactAutorizTokin.data;
+using reactAutorizTokin.Models;
 using Microsoft.AspNetCore.Authorization;
 using reactAutorizTokin.classes;
-
+using reactAutorizTokin.Data;
 
 namespace reactAutorizTokin.Controllers
 {

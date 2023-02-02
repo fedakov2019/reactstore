@@ -4,7 +4,7 @@ using System.Text;
 using reactAutorizTokin;
 using reactAutorizTokin.Controllers;
 using reactAutorizTokin.classes;
-using reactAutorizTokin.data;
+using reactAutorizTokin.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();

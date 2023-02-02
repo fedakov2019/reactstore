@@ -1,6 +1,6 @@
-﻿using reactAutorizTokin.data;
+﻿using reactAutorizTokin.Models;
 
-namespace reactAutorizTokin.data
+namespace reactAutorizTokin.Data
 {
     public interface IUserRepository
     {

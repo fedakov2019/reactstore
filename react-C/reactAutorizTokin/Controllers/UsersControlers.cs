@@ -8,22 +8,24 @@ using reactAutorizTokin.classes;
 
 namespace reactAutorizTokin.Controllers
 {
+    [Route("")]
     [ApiController]
-    [Route("[controller]")]
+   
 
-    public class UsersControlers : ControllerBase
+    public class UsersControlers : Controller
     {
         private readonly JWTAutorizationmanager jWTAutorizationmanager;
-        public UsersControlers(JWTAutorizationmanager jWTAutorizationmanager, IUserRepository companyRepo)
+        public UsersControlers(IUserRepository companyRepo, JWTAutorizationmanager jWTAutorizat)
         {
-            this.jWTAutorizationmanager = jWTAutorizationmanager;
+            _jWTAutorizat = jWTAutorizat;
             _companyRepo = companyRepo;
+            
         }
 
-
-
-
+        private readonly JWTAutorizationmanager _jWTAutorizat;
         private readonly IUserRepository _companyRepo;
+
+        public JWTAutorizationmanager JWTAutorizat { get; }
 
         [Authorize]
         [HttpGet("all_companies")]
@@ -117,7 +119,7 @@ namespace reactAutorizTokin.Controllers
         [HttpPut("Authenticate")]
         public IActionResult AuthUser([FromBody] SuperUser usr)
         {
-            var token = jWTAutorizationmanager.Authenticate(usr.username, usr.password);
+            var token = _jWTAutorizat.Authenticate(usr.username, usr.password);
             if (token == null)
             {
                 return Unauthorized();

@@ -2,3 +2,4 @@
 2. npm install --save cross-env
 3.npm install --start bootstrap
 K8TCY-WY3TW-H2BCG-WTYV2-C96HM
+32

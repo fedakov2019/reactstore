@@ -5,36 +5,41 @@ using reactAutorizTokin.Models;
 using Microsoft.AspNetCore.Authorization;
 using reactAutorizTokin.classes;
 using reactAutorizTokin.Data;
+using reactAutorizTokin.Dto;
 
 namespace reactAutorizTokin.Controllers
 {
-    [Route("")]
+    [Route("admin")]
     [ApiController]
    
 
     public class UsersControlers : Controller
+
     {
+        
         private readonly JWTAutorizationmanager jWTAutorizationmanager;
-        public UsersControlers(IUserRepository companyRepo, JWTAutorizationmanager jWTAutorizat)
+        public UsersControlers(IUserAut UserSE, JWTAutorizationmanager jWTAutorizat)
         {
-            _jWTAutorizat = jWTAutorizat;
-            _companyRepo = companyRepo;
+            _jWTAutorizat1 = jWTAutorizat;
+            _userSE = UserSE;
             
         }
+        private readonly IUserAut _userSE;
+        private readonly JWTAutorizationmanager _jWTAutorizat1;
 
-        private readonly JWTAutorizationmanager _jWTAutorizat;
-        private readonly IUserRepository _companyRepo;
-
-        public JWTAutorizationmanager JWTAutorizat { get; }
-
-        [Authorize]
-        [HttpGet("all_companies")]
-        public async Task<IActionResult> GetUser()
+       
+        
+       
+        [HttpPost("create-User")]
+        public async Task<IActionResult> CreateUs(RegisterDto user)
         {
             try
             {
-                var companies = await _companyRepo.GetUser();
-                return Ok(companies);
+                var createdCUs = await _userSE.CreateUs(user);
+                if (createdCUs == null)
+                    return NotFound();
+                return Created("Seccuss",createdCUs);
+                //return CreatedAtRoute("create-post", new { id = createdCompany.Id1 }, createdCompany);
             }
             catch (Exception ex)
             {
@@ -42,35 +47,32 @@ namespace reactAutorizTokin.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
+        [AllowAnonymous]
 
-        [HttpGet("get-post-by-id/{id}", Name = "CompanyById")]
-        public async Task<IActionResult> GetUser(int id)
+        [HttpPost("Login")]
+        public async Task<IActionResult> Login(RegisterDto user)
         {
             try
             {
-                var company = await _companyRepo.GetUser(id);
-                if (company == null)
-                    return NotFound();
-                return Ok(company);
-            }
-            catch (Exception ex)
-            {
-                //log error
-                return StatusCode(500, ex.Message);
-            }
-        }
+                var createdCUs = await _userSE.Login(user.Name);
+                if (createdCUs == null)
+                    return BadRequest(new { message = "Name incorect" });
 
+                if (!BCrypt.Net.BCrypt.Verify(user.Password,createdCUs.Password))
+                {
+                    return BadRequest(new { message = "Password incorect" });
 
+                }
 
-        [HttpPost("create-post")]
-        public async Task<IActionResult> CreateUser(user1 company)
-        {
-            try
-            {
-                var createdCompany = await _companyRepo.CreateUser(company);
-                if (createdCompany == null)
-                    return NotFound();
-                return Ok(createdCompany);
+                var key= _jWTAutorizat1.Authenticate(user.Name);
+                string key2 = key[1];
+                var key1 = key[0];
+                await _userSE.RegisterREFRToken(createdCUs.Id, key2); 
+
+                Response.Cookies.Append("jwt",key1,new CookieOptions
+                { HttpOnly= true });
+                return Ok(new { message = "secceess" });
+                
                 //return CreatedAtRoute("create-post", new { id = createdCompany.Id1 }, createdCompany);
             }
             catch (Exception ex)
@@ -80,59 +82,11 @@ namespace reactAutorizTokin.Controllers
             }
         }
 
-        [HttpPut("update-post/")]
-        public async Task<IActionResult> UpdateCompany(user company)
-        {
-            try
-            {
-                var dbCompany = await _companyRepo.GetUser(company.Id1);
-                if (dbCompany == null)
-                    return NotFound();
-                await _companyRepo.UpdateCompany(company);
-                return Ok('1');
-            }
-            catch (Exception ex)
-            {
-                //log error
-                return StatusCode(500, ex.Message);
-            }
-        }
-        [HttpDelete("delete-post-by-id/{id}")]
-        public async Task<IActionResult> DeleteCompany(int id)
-        {
-            try
-            {
-                var dbCompany = await _companyRepo.GetUser(id);
-                if (dbCompany == null)
-                    return NotFound();
-                await _companyRepo.DeleteCompany(id);
-                return Ok(id);
-            }
-            catch (Exception ex)
-            {
-                //log error
-                return StatusCode(500, ex.Message);
-            }
-        }
 
-        [AllowAnonymous]
-        [HttpPut("Authenticate")]
-        public IActionResult AuthUser([FromBody] SuperUser usr)
-        {
-            var token = _jWTAutorizat.Authenticate(usr.username, usr.password);
-            if (token == null)
-            {
-                return Unauthorized();
-            }
-            return Ok(token);
-        }
+
+
     }
 
-        public class SuperUser
-        {
-            public string username { get; set; }
-            public string password { get; set; }
-
-        }
+       
     
 }

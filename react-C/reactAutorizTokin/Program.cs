@@ -12,6 +12,7 @@ builder.Services.AddMvc();
 
 builder.Services.AddSingleton<DapperContext>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserAut,UserAut>();
 builder.Services.AddScoped<JWTAutorizationmanager>();
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

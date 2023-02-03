@@ -4,7 +4,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
-
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace reactAutorizTokin.classes
 
@@ -12,27 +12,29 @@ namespace reactAutorizTokin.classes
     public class JWTAutorizationmanager
 {
         private readonly string key= "lecureTest123 dfsdf dsf4$$$";
-        private readonly IDictionary<string, string> users = new Dictionary<string, string>()
-        {{"test","password"},{"test1","pwd"}};
-        
+       
 
-        public string Authenticate(string username, string password)
-        { if (!users.Any(u=>u.Key==username && u.Value==password))
-            { return null; }
-
+        public string[] Authenticate(string username)
+       
+            {
 
 
             var symmetr = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(key));
             var credenties = new SigningCredentials(symmetr, SecurityAlgorithms.HmacSha256Signature);
             var header = new JwtHeader(credenties);
             var payload = new JwtPayload(username, null, null, null, DateTime.Today.AddDays(1));
+            var payloadrefrech = new JwtPayload(username, null, null, null, DateTime.Today.AddDays(60));
 
-                var securityToken =new JwtSecurityToken(header, payload);
+            var securityToken =new JwtSecurityToken(header, payload);
+            var securtuTokenRefrech = new JwtSecurityToken(header, payloadrefrech);
 
-
-           
             
-            return new JwtSecurityTokenHandler().WriteToken(securityToken);
+            var tok1 = new JwtSecurityTokenHandler().WriteToken(securityToken);
+            var tok2 = new JwtSecurityTokenHandler().WriteToken(securtuTokenRefrech);
+            
+
+
+            return new string[] { tok1,tok2 };
                     
                     }
 }

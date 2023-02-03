@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "RthxHEtuH1ozIY6CrlI8ltBaDq17+FiMF6IG3UspdGI5M7JhAiX8zsLlcGMBCl9UUQgB7zXHZ9CLVvPYiwf1Wg==",
+  "dgSpecHash": "bAcZA3cvuL+MDY4kXN/u4wF/zQS6DHk+RL8+n0cJcgwTs+M70EHCRQ5lY/BojpNBwpbfivWWe8xFgJe/I8zFBw==",
   "success": true,
   "projectFilePath": "C:\\proect-1\\react-C\\reactAutorizTokin\\reactAutorizTokin.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\fedak\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\fedak\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
+    "C:\\Users\\fedak\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\fedak\\.nuget\\packages\\dapper\\2.0.123\\dapper.2.0.123.nupkg.sha512",
     "C:\\Users\\fedak\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
     "C:\\Users\\fedak\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",

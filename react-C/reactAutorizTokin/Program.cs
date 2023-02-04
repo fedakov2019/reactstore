@@ -5,11 +5,12 @@ using reactAutorizTokin;
 using reactAutorizTokin.Controllers;
 using reactAutorizTokin.classes;
 using reactAutorizTokin.Data;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddMvc();
-
+builder.Services.AddCors();
 builder.Services.AddSingleton<DapperContext>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserAut,UserAut>();
@@ -18,9 +19,12 @@ builder.Services.AddScoped<JWTAutorizationmanager>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+var ser = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+
+var ReactName = ser.GetValue<string>("ReactServer:http");
 
 
-var key = "lecureTvdfvdfv est1234$$$";
+var key = ser.GetValue<string>("ReactServer:JWT_acces_token"); 
 builder.Services.AddAuthentication(x =>
 {
     x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -59,8 +63,15 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
 
+app.UseHttpsRedirection();
+app.UseRouting();
+app.UseCors(options => options
+.WithOrigins(new[] {ReactName})
+.AllowAnyHeader()
+.AllowAnyMethod()
+.AllowCredentials()
+);
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();

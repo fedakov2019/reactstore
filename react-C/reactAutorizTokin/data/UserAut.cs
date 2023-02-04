@@ -38,6 +38,19 @@ namespace reactAutorizTokin.Data
                 return createdUser;
             }
         }
+        public async Task<UsersAUT> GitidUser(int Id)
+        {
+            var query = "select  * from [dbo].[UsersAUT] where Id=@Id";
+            var parameters = new DynamicParameters();
+            parameters.Add("Id", Id, DbType.Int64);
+            using (var connection = _context.CreateConnection())
+            {
+                var UserAUT = await connection.QuerySingleOrDefaultAsync<UsersAUT>(query, parameters);
+                return UserAUT;
+
+            }
+        }
+
         public async Task<UsersAUT> Login(String UserName)
         {
             var query = "select top 1 * from [dbo].[UsersAUT] where Name=@Name";
@@ -52,12 +65,12 @@ namespace reactAutorizTokin.Data
 
 
         }
-        public async Task RegisterREFRToken(int Id, string RefrescToken)
+        public async Task RegisterREFRToken(int Id, string RefreshToken)
         {
-            var query = "UPDATE [dbo].[UsersAUT] set RefrescToken  = @RefrescToken WHERE Id = @Id";
+            var query = "UPDATE [dbo].[UsersAUT] set RefreshToken  = @RefreshToken WHERE Id = @Id";
             var parameters = new DynamicParameters();
             parameters.Add("Id", Id, DbType.Int32);
-            parameters.Add("RefrescToken", RefrescToken, DbType.String);
+            parameters.Add("RefreshToken", RefreshToken, DbType.String);
             
 
             using (var connection = _context.CreateConnection())
@@ -65,7 +78,22 @@ namespace reactAutorizTokin.Data
                 await connection.ExecuteAsync(query, parameters);
             }
         }
-        public Task DeleteUs(int Id)
+
+        public async Task<UsersAUT> ValidRefrehTok(string RefreshToken)
+
+        {
+            var query = "select  * from [dbo].[UsersAUT] where RefreshToken=@RefreshToken";
+            var parameters = new DynamicParameters();
+            parameters.Add("RefreshToken", RefreshToken, DbType.String);
+            using (var connection = _context.CreateConnection())
+            {
+                var UserAUT = await connection.QuerySingleOrDefaultAsync<UsersAUT>(query, parameters);
+                return UserAUT;
+
+            }
+
+        }
+            public Task DeleteUs(int Id)
         {
             throw new NotImplementedException();
         }

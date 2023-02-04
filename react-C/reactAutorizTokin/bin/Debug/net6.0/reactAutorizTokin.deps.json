@@ -10,6 +10,7 @@
         "dependencies": {
           "BCrypt.Net-Next": "4.0.3",
           "Dapper": "2.0.123",
+          "Microsoft.AspNet.Cors": "5.2.9",
           "Microsoft.AspNetCore.Authentication": "2.2.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "6.0.13",
           "Microsoft.Data.SqlClient": "5.1.0",
@@ -67,6 +68,14 @@
           "lib/net5.0/Dapper.dll": {
             "assemblyVersion": "2.0.0.0",
             "fileVersion": "2.0.123.33578"
+          }
+        }
+      },
+      "Microsoft.AspNet.Cors/5.2.9": {
+        "runtime": {
+          "lib/net45/System.Web.Cors.dll": {
+            "assemblyVersion": "5.2.9.0",
+            "fileVersion": "5.2.61129.10"
           }
         }
       },
@@ -673,6 +682,13 @@
       "sha512": "sha512-RDFF4rBLLmbpi6pwkY7q/M6UXHRJEOerplDGE5jwEkP/JGJnBauAClYavNKJPW1yOTWRPIyfj4is3EaJxQXILQ==",
       "path": "dapper/2.0.123",
       "hashPath": "dapper.2.0.123.nupkg.sha512"
+    },
+    "Microsoft.AspNet.Cors/5.2.9": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-LUjfvaOu0q9bz523CYmIE06Q9EttrpKuRLm3T83spF6oX+dYiFlLJFLm4RveGKq/puRJC5KTnXdbWGLqM783jA==",
+      "path": "microsoft.aspnet.cors/5.2.9",
+      "hashPath": "microsoft.aspnet.cors.5.2.9.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Authentication/2.2.0": {
       "type": "package",

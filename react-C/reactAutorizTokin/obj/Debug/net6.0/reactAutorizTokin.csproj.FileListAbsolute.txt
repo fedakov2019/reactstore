@@ -67,3 +67,4 @@ C:\proect-1\react-C\reactAutorizTokin\obj\Debug\net6.0\reactAutorizTokin.pdb
 C:\proect-1\react-C\reactAutorizTokin\obj\Debug\net6.0\reactAutorizTokin.genruntimeconfig.cache
 C:\proect-1\react-C\reactAutorizTokin\obj\Debug\net6.0\ref\reactAutorizTokin.dll
 C:\proect-1\react-C\reactAutorizTokin\bin\Debug\net6.0\BCrypt.Net-Next.dll
+C:\proect-1\react-C\reactAutorizTokin\bin\Debug\net6.0\System.Web.Cors.dll

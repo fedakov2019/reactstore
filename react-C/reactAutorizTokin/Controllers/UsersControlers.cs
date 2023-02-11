@@ -52,7 +52,7 @@ namespace reactAutorizTokin.Controllers
         }
         [AllowAnonymous]
 
-        [HttpPost("Login")]
+        [HttpPost("login")]
         public async Task<IActionResult> Login(RegisterDto user)
         {
             try
@@ -70,10 +70,11 @@ namespace reactAutorizTokin.Controllers
                 var key = _jWTAutorizat1.Authenticate(new string[] {createdCUs.Name, createdCUs.Id.ToString()});
                 string key2 = key[1];
                 string key1 = key[0];
+                createdCUs.RefreshToken = key2;
                 Token_modal token_mod=new Token_modal { AccessToken = key1, RefreshToken = key2 };
                 await _userSE.RegisterREFRToken(createdCUs.Id, key2);
 
-                Response.Cookies.Append("jwt", key2, new CookieOptions
+                Response.Cookies.Append("jwt_r", key2, new CookieOptions
                 { HttpOnly = true, Secure=true });
               
                 return Ok(new { token_mod, createdCUs });
@@ -114,11 +115,11 @@ namespace reactAutorizTokin.Controllers
 
         }
         [HttpGet("refrech")]
-        public async Task<IActionResult>  Refrech(string jwt_r)
+        public async Task<IActionResult>  Refrech()
         {
             try
             {
-                
+                var jwt_r = Request.Cookies["jwt_r"];
                 var token = _jWTAutorizat1.Verify_refrech(jwt_r);
                 int Userid = int.Parse(token.Payload["nameid"].ToString());
 
@@ -130,12 +131,13 @@ namespace reactAutorizTokin.Controllers
                 var key = _jWTAutorizat1.Authenticate(new string[] { usernew.Name, usernew.Id.ToString() });
                 string key2 = key[1];
                 var key1 = key[0];
+                Token_modal token_mod = new Token_modal { AccessToken = key1, RefreshToken = key2 };
                 await _userSE.RegisterREFRToken(Userid, key2);
 
-                Response.Cookies.Append("jwt", key1, new CookieOptions
-                { HttpOnly = true });
+                Response.Cookies.Append("jwt", key2, new CookieOptions
+                { HttpOnly = true, Secure=true });
                 
-                return Ok(new { message = "secceess" });
+                return Ok(new { token_mod,usernew });
 
                 
 
@@ -153,10 +155,10 @@ namespace reactAutorizTokin.Controllers
 
 
 
-        [HttpPost("logaut")]
+        [HttpPost("logout")]
         public IActionResult Logaut()
         {
-            Response.Cookies.Delete("jwt");
+            Response.Cookies.Delete("jwt_r");
             return Ok(new { message = "seccess" });
         }
 

@@ -1,16 +1,37 @@
 
-import React, {FC, useState} from 'react';
+import axios from 'axios';
+import React, {FC, useEffect, useState} from 'react';
 import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Context } from '../index';
+import { AuthResponse } from '../models/response/AuthResponse';
 
-const LoginForm: FC =() =>{
+
+
+export default function LoginForm() {
   const {store}=useContext(Context)
     const [name, setName]= useState<string>('')
     const [password, setPassword]= useState<string>('')
+    const [redirect, SetRedirect]=useState(false);
+    const navigate=useNavigate();
+    useEffect(() => {
+      if (redirect) {
+       return navigate("/");
+      }
+      },[redirect]);
+  
+    
+    const  LoginUser= async(event : React.FormEvent)=> {
+      event.preventDefault();
+      store.login(name,password);
+      SetRedirect(store.isRedirect);
+     
+    }
+
     return(
       <div>
 <main className="form-signin w-100 m-auto">
-  <form>
+  <form onSubmit={LoginUser}>
     
     <h1 className="h3 mb-3 fw-normal">Please sign in</h1>
 
@@ -30,11 +51,10 @@ const LoginForm: FC =() =>{
     
 
     
-    <button onClick={()=> store.login(name,password)} className="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+    <button  className="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
    
   </form>
 </main>
       </div>  
     )
 }
-export default LoginForm;

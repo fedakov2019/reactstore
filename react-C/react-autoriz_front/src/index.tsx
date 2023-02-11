@@ -6,12 +6,12 @@ import Store from './store/store';
 
 
 interface State {
-  store:Store;
+  store : Store;
 }
 const store = new Store();
 
 export const  Context = createContext<State>(
-  {store,}
+  {store}
 )
 
 const root = ReactDOM.createRoot(

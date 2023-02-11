@@ -1,7 +1,9 @@
 export interface IUser {
     name:string;
-    password:string;
+    
     id:Number;
-    AccesKey:Number;
+    acceskey:Number;
+    refreshToken:string;
+    password:string;
 
 }

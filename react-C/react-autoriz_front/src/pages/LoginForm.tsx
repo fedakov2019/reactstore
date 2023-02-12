@@ -1,19 +1,27 @@
 
 import axios from 'axios';
-import React, {FC, useEffect, useState} from 'react';
+import React, { useEffect, useState} from 'react';
 import { useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Context } from '../index';
 import { AuthResponse } from '../models/response/AuthResponse';
+import { Loader } from '../components/Loader';
+import { ErrorMessage } from '../components/ErrorMesage';
+import { observer } from 'mobx-react-lite/';
+
+import { Home_ROUTE, LOGIN_ROUTE } from '../utils/const';
+import {createBrowserHistory} from 'history';
 
 
-
-export default function LoginForm() {
+const LoginForm = ()=> {
   const {store}=useContext(Context)
     const [name, setName]= useState<string>('')
     const [password, setPassword]= useState<string>('')
     const [redirect, SetRedirect]=useState(false);
     const navigate=useNavigate();
+    const location = useLocation()
+    
+    const isLogin = location.pathname === LOGIN_ROUTE
     useEffect(() => {
       if (redirect) {
        return navigate("/");
@@ -24,6 +32,7 @@ export default function LoginForm() {
     const  LoginUser= async(event : React.FormEvent)=> {
       event.preventDefault();
       store.login(name,password);
+      
       SetRedirect(store.isRedirect);
      
     }
@@ -52,9 +61,14 @@ export default function LoginForm() {
 
     
     <button  className="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-   
+   {store.isLoading && <Loader />}
+   {store.isError && <ErrorMessage error={store.isError.message} />}
+
   </form>
 </main>
       </div>  
     )
 }
+export default observer(LoginForm);
+
+

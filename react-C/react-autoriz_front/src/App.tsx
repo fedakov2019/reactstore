@@ -1,13 +1,33 @@
-import React from 'react';
-import LoginForm from './components/LoginForm';
+import React, { useContext, useEffect, useState } from 'react';
+import LoginForm from './pages/LoginForm';
 
 import './App.css';
 import NavBar from './components/NavBar';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import {Home} from './components/Home';
 
-export  function  App() 
+import AppRoute from './components/AppRoute';
+import { Loader } from './components/Loader';
+import { Context } from './index';
+import { observer } from 'mobx-react-lite';
+
+export function  App() 
 {
+  const {store} = useContext(Context)
+  const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+
+    if (store.isRedirect && localStorage.getItem('accessToken')) {
+     setLoading(true);
+      store.checkAuth().finally(() => setLoading(false))
+    }
+     
+  }, [])
+
+  if (loading) {
+      return <Loader/>
+  }
+
   return (
     <div>
     <div className="container">
@@ -24,10 +44,8 @@ export  function  App()
    <div className="item"> 2</div>
    
    <div className="item"> 
-   <Routes>
-      <Route  path="/" element={<Home/>}/>
-      <Route path="/admin/login" element={<LoginForm/>} />
-      </Routes>
+   
+   <AppRoute/>
       </div>
       
       
@@ -48,4 +66,4 @@ export  function  App()
   );
 }
 
-export default App;
+export default observer(App);

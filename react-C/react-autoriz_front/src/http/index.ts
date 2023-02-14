@@ -16,7 +16,8 @@ const $apil = axios.create({
 })
 
 $apil.interceptors.request.use((config) => {
-    config.headers.Authorization = `Bearer ${localStorage.getItem('accessToken')}`
+    config.headers.Authorization = `${localStorage.getItem('accessToken')}`
+    config.headers['Content-Type'] = 'application/json'
     return config;
 })
 $apil.interceptors.response.use((config)=>{
@@ -38,4 +39,4 @@ throw error;
 })
 
 
-export default $api;
+export { $apil,$api};

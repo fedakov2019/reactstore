@@ -24,6 +24,10 @@ export const publicRoutes = [
         path: LOGIN_ROUTE,
         Component: LoginForm 
     },
+    {
+        path: Home_ROUTE,
+        Component: Home
+    }
     
 
 ]

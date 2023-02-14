@@ -2,7 +2,7 @@
 import axios from 'axios';
 import React, { useEffect, useState} from 'react';
 import { useContext } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { Context } from '../index';
 import { AuthResponse } from '../models/response/AuthResponse';
 import { Loader } from '../components/Loader';
@@ -18,15 +18,9 @@ const LoginForm = ()=> {
     const [name, setName]= useState<string>('')
     const [password, setPassword]= useState<string>('')
     const [redirect, SetRedirect]=useState(false);
-    const navigate=useNavigate();
-    const location = useLocation()
     
-    const isLogin = location.pathname === LOGIN_ROUTE
-    useEffect(() => {
-      if (redirect) {
-       return navigate("/");
-      }
-      },[redirect]);
+   
+   
   
     
     const  LoginUser= async(event : React.FormEvent)=> {
@@ -63,7 +57,7 @@ const LoginForm = ()=> {
     <button  className="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
    {store.isLoading && <Loader />}
    {store.isError && <ErrorMessage error={store.isError.message} />}
-
+{store.isRedirect && <Navigate to="/" />}
   </form>
 </main>
       </div>  

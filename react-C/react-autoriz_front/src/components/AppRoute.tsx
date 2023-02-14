@@ -1,4 +1,3 @@
-
 import React,{useContext} from 'react';
 import {Routes, Route, Navigate} from 'react-router-dom'
 import {authRoutes, publicRoutes} from "../routes";
@@ -6,10 +5,10 @@ import {Home_ROUTE} from "../utils/const";
 import {Context} from "../index";
 import {observer} from "mobx-react-lite";
 import Error from '../pages/Error';
-
+ 
 export function AppRoute(){
     const {store} = useContext(Context)
-
+ 
     console.log(store)
     return (
         <Routes>
@@ -25,5 +24,6 @@ export function AppRoute(){
         </Routes>
     );
 };
+ 
 
 export default observer(AppRoute);

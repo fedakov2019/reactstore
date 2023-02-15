@@ -39,7 +39,7 @@ namespace reactAutorizTokin.classes
                         new Claim(ClaimTypes.Name,userid[0]),
                         new Claim(ClaimTypes.NameIdentifier,userid[1]),
                     }),
-                    Expires = DateTime.UtcNow.AddDays(1),
+                    Expires = DateTime.Now.AddSeconds(20),
                     SigningCredentials = new SigningCredentials(
                         new SymmetricSecurityKey(tokenKey),
                         SecurityAlgorithms.HmacSha256Signature)
@@ -52,7 +52,7 @@ namespace reactAutorizTokin.classes
                         new Claim(ClaimTypes.Name,userid[0]),
                         new Claim(ClaimTypes.NameIdentifier,userid[1]),
                    }),
-                Expires = DateTime.UtcNow.AddDays(60),
+                Expires = DateTime.Now.AddSeconds(40),
                 SigningCredentials = new SigningCredentials(
                        new SymmetricSecurityKey(tokenKeyRefrech),
                        SecurityAlgorithms.HmacSha256Signature)

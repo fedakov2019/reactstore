@@ -37,7 +37,7 @@ export function  App()
       <BrowserRouter>
      
       <div className="item ">
-      <NavBar name={store.isRedirect}/>
+      <NavBar />
     
       
     </div>

@@ -50,7 +50,7 @@ namespace reactAutorizTokin.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
-        [AllowAnonymous]
+        
 
         [HttpPost("login")]
         public async Task<IActionResult> Login(RegisterDto user)
@@ -75,7 +75,7 @@ namespace reactAutorizTokin.Controllers
                 await _userSE.RegisterREFRToken(createdCUs.Id, key2);
 
                 Response.Cookies.Append("jwt_r", key2, new CookieOptions
-                { HttpOnly = true, Secure=true });
+                { HttpOnly = true, Secure=true, SameSite = 0 });
               
                 return Ok(new { token_mod, createdCUs });
 
@@ -87,8 +87,8 @@ namespace reactAutorizTokin.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
-
-        [HttpGet("user")]
+        [AllowAnonymous]
+        [HttpGet("users")]
         public async Task<IActionResult> User()
         {
             try {
@@ -109,7 +109,7 @@ namespace reactAutorizTokin.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, ex.Message);
+                return StatusCode(401, ex.Message);
             }
 
 
@@ -135,7 +135,7 @@ namespace reactAutorizTokin.Controllers
                 await _userSE.RegisterREFRToken(Userid, key2);
 
                 Response.Cookies.Append("jwt", key2, new CookieOptions
-                { HttpOnly = true, Secure=true });
+                { HttpOnly = true, Secure=true,SameSite=0 });
                 
                 return Ok(new { token_mod,usernew });
 

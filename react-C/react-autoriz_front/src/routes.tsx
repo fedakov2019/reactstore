@@ -11,10 +11,6 @@ export const authRoutes = [
     {
         path: ADMIN_ROUTE,
         Component: Admin 
-    },
-    {
-        path: Home_ROUTE,
-        Component: Home
     }
 ]
 

@@ -76,7 +76,7 @@ export default class Store {
         try {
             const response = await AuthService.logout();
             localStorage.removeItem('accessToken');
-            
+            this.setRedirect(false);
             this.setUser({} as IUser);
         } catch (e:unknown) {
             const error =e as AxiosError

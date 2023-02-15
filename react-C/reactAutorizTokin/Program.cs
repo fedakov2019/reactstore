@@ -25,22 +25,24 @@ builder.Services.AddCors(options =>
         builder =>
         {
             builder
+            .AllowCredentials()
             .AllowAnyMethod()
             .AllowAnyHeader()
             .WithOrigins("http://localhost:3000", "https://appname.azurestaticapps.net");
         });
 });
 
-var key = ser.GetValue<string>("ReactServer:JWT_acces_token"); 
+var key = ser.GetValue<string>("ReactServer:JWT_acces_token");
 builder.Services.AddAuthentication(x =>
 {
     x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    x.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
 }).AddJwtBearer(x =>
 {
     x.RequireHttpsMetadata = false;
     x.SaveToken = true;
-    x.TokenValidationParameters = new TokenValidationParameters
+    x.TokenValidationParameters = new TokenValidationParameters()
     {
         ValidateIssuerSigningKey = true,
 
@@ -50,6 +52,9 @@ builder.Services.AddAuthentication(x =>
     };
 
 });
+
+
+
 
 builder.Services.AddSingleton<DapperContext>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();

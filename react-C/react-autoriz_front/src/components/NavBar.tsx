@@ -1,10 +1,14 @@
+import { observer } from "mobx-react-lite";
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../index";
-export default function NavBar(props:{name:boolean}) {
+export  function NavBar() {
   const {store}=useContext(Context)
+  const logout=async()=>{
+await store.logout()
+  }
 let menu;
-if (!props.name ) { menu= (
+if (!store.isRedirect) { menu= (
   <ul className="navbar-nav me-auto mb-2 mb-md-0">
   <li className="nav-item active">
     <Link to="/admin/login" className="nav-link"  >Login</Link>
@@ -17,7 +21,7 @@ else {
 
 <ul className="navbar-nav me-auto mb-2 mb-md-0">
   <li className="nav-item active">
-    <Link to="/admin/login" className="nav-link" onClick={store.logout} >Logut</Link>
+    <Link to="/admin/login" className="nav-link" onClick={logout} >Logut</Link>
   </li>
   
   
@@ -41,3 +45,4 @@ return (
 )
 
 }
+export  default observer(NavBar)

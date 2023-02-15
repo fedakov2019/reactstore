@@ -6,10 +6,7 @@ import {IUser} from "../models/IUser";
 import { config } from 'process';
 
 export const API_URL = `https://localhost:8000/admin`
-const $api = axios.create({
-    
-    baseURL: API_URL
-})
+
 const $apil = axios.create({
     withCredentials: true,
     baseURL: API_URL
@@ -39,4 +36,4 @@ throw error;
 })
 
 
-export { $apil,$api};
+export default $apil;

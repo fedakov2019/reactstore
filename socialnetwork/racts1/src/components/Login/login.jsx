@@ -8,19 +8,19 @@ import styles  from "../common/FormControls/FormsControls.module.css";
 
 const Login=(props)=>{
     const onSubmit =(formData)=>{
-        props.login(formData.email,formData.password,formData.rememberMe);
+        props.login(formData.email,formData.password,formData.rememberMe,formData.captcha);
 
     }
     if (props.isAuth) {return <Navigate to='/profile/'/>}
 return <div>
 
 <h1>Login</h1>
-<LoginReduxForm onSubmit={onSubmit} />
+<LoginReduxForm onSubmit={onSubmit} captchaUrl={props.captchaUrl} />
 </div>
 } 
-const LoginForm=(props)=>{
+const LoginForm=({handleSubmit,error,captchaUrl})=>{
     return (
-        <form onSubmit={props.handleSubmit}>
+        <form onSubmit={handleSubmit}>
 <div>
     <Field placeholder={"Login"} name={"email"} component={Input} validate={[required]} type={"email"}/>
 </div>
@@ -30,7 +30,9 @@ const LoginForm=(props)=>{
 <div>
   <Field component={Input} name={"rememberMe"} type={"checkbox"} /> remember me  
 </div>
-{props.error && <div className={styles.formSummaryError}>{props.error}</div>}
+{captchaUrl && <img src={captchaUrl}/>}
+{captchaUrl && <Field placeholder={"Введите текст с картинки:"} validate={[required]} component={Input} name={"captcha"}  />}
+{error && <div className={styles.formSummaryError}>{error}</div>}
 <div>
     <button>Login</button>
 </div>
@@ -41,6 +43,6 @@ const LoginReduxForm =reduxForm({
     form:'login'
 })(LoginForm)
 const mapStateToProps=(state)=>(
-    {isAuth : state.auth.isAuth}
+    {isAuth : state.auth.isAuth, captchaUrl:state.auth.captchaUrl }
 )
 export default connect(mapStateToProps,{login})(Login);

@@ -14,13 +14,13 @@ import DialogsContainer from './components/Dialogs/DialogsContainer';
 import ProfileContainer from './components/Profile/ProfileInfo/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Loader from './components/Users/Loader';
-import sd from './sd'
+
 
 const App = (props) => {
        useEffect(()=>{
               props.initialize();
           },[]) 
-          sd();
+          
           
     if (!props.initialized) {return <Loader/>}
     return (<>    

@@ -4,19 +4,14 @@ import userPhoto from "./mult-ava-instagram-58.jpg"
 import { NavLink } from 'react-router-dom';
 
 import { userAPI } from '../../api/api';
+import Paginator from '../common/Paginator';
 const Users=(props)=>{
-    let pagesCount=Math.ceil(props.totalUserCount/props.pageSize);
-let pages=[];
-    for (let i=1; i<= pagesCount; i++)
-    {pages.push(i)}
+    return <div>
+    <Paginator totalItemsCount={props.totalUserCount} pageSize={props.pageSize}
+    curerentPage={props.currentPage} onPageChange={props.onPageChangrd}/>
+
     
-        return <div>
-    <div>
-    {pages.map(p =>{
-        return <span className={props.currentPage=== p && styles.selectedPage}
-        onClick={(e)=>{props.onPageChangrd(p)}}> {p}</span>
-    })}
-    </div>
+
     
             { props.users.map(u => <div key={u.id}>
             <span>

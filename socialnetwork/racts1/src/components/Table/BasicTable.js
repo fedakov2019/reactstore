@@ -137,8 +137,7 @@ onChange={(e) => setPageSize(Number(e.target.value))}>
         {JSON.stringify(
             {selectedFlatRows:selectedFlatRows.map((row) => row.original),
             },
-            null<
-            2
+            null
         )}
     </code>
 </pre>

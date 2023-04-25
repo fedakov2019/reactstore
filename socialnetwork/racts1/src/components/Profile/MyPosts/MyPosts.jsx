@@ -5,9 +5,10 @@ import Post from './Post/Post';
 import { Field,reduxForm } from 'redux-form';
 import { Textarea } from '../../common/FormControls/FormsControls';
 
-const MyPosts = (props) => {
+const MyPosts = React.memo((props) => {
+    
     let postsElements =
-        props.posts.map( p => <Post message={p.message} likesCount={p.likesCount}/>);
+        props.posts.map( p => <Post key={p.id} message={p.message} likesCount={p.likesCount}/>);
 
     
 
@@ -28,7 +29,7 @@ const MyPosts = (props) => {
             </div>
         </div>
     )
-}
+});
 const maxLenght10 = maxLengthCreator(10);
 const AddNewPostForm=(props)=>{
     

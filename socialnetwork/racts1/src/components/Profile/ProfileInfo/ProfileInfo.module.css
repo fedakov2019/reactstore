@@ -5,3 +5,17 @@
 
 
 }
+.mainphoto {
+    max-width: 200px;
+}
+
+.contakt {
+    padding-left: 10px;
+}
+.formSummaryError{
+    border: solid red 1px;
+    padding:1px ;
+    text-align: center;
+    margin: 3px;
+    color:crimson; 
+}
